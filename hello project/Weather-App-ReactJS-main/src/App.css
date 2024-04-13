@@ -1,0 +1,32 @@
+.App {
+	text-align: center;
+}
+
+body {
+	font-size: 22px;
+}
+
+.weather-container {
+	text-align: center;
+	padding: 20px;
+}
+
+.weather-info {
+	margin: 20px;
+	background-color: #eee;
+	padding: 20px;
+}
+
+input {
+	padding: 10px;
+	width: 200px;
+	margin: 1px;
+}
+
+button {
+	padding: 10px;
+	cursor: pointer;
+	margin: 1px;
+	background-color: #000;
+	color: #fff;
+}
