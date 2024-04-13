@@ -21,3 +21,23 @@ steps:
     backendAzureRmStorageAccountName: 'mystoragem'
     backendAzureRmContainerName: 'murthy'
     backendAzureRmKey: 'terraform.tf'
+- task: TerraformTaskV4@4
+  displayName: 'Terraform Validate'
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/hello project'
+- task: TerraformTaskV4@4
+  displayName: 'Terraform Plan'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/hello project'
+    environmentServiceNameAzureRM: 'aks'
+- task: TerraformTaskV4@4
+  displayName: 'Terraform Apply'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/hello project'
+    environmentServiceNameAzureRM: 'aks'
