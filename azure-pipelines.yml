@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  terraform1
 
 steps:
 - task: TerraformTaskV4@4
