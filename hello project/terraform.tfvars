@@ -1,4 +1,4 @@
-resource_group_name = "cprimeinc_rg"
+resource_group_name = "ccprimeinc_rg"
 location            = "eastus2"
 cluster_name        = "cprimecluster"
 kubernetes_version  = "1.29.2"
