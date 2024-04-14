@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: kvnmoorthycprimeinc 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kvnmoorthycprimeinc
+  template:
+    metadata:
+      labels:
+        app: kvnmoorthycprimeinc 
+    spec:
+      containers:
+        - name: kvnmoorthycprimeinc 
+          image: cprimemyacr321014.azurecr.io/kvnmoorthycprimeinc
+          ports:
+          - containerPort: 3000
