@@ -34,6 +34,7 @@ steps:
     command: 'plan'
     workingDirectory: '$(System.DefaultWorkingDirectory)/hello project'
     environmentServiceNameAzureRM: 'aks'
+
 - task: TerraformTaskV4@4
   displayName: 'Terraform Destroy'
   inputs:
