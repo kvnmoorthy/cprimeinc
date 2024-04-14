@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  terraform1
+  murthy
 
 steps:
 - task: AzureCLI@2
