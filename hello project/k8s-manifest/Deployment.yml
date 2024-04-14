@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: nginx:latest
+        image: cprimemyacr321014.azurecr.io
         ports:
         - containerPort: 3000
 
