@@ -13,7 +13,7 @@ steps:
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'murthy'
-    scriptType: 'bash'
+    scriptType: 'pscore'
     scriptLocation: 'inlineScript'
     inlineScript: |
       docker build -t cprimemyacr321014.azurecr.io/web-game:tag 2048-game
