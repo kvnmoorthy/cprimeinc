@@ -23,6 +23,12 @@ steps:
   inputs:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    addPipelineData: false
+    addBaseImageData: false
+# - task: Docker@2
+#   inputs:
+#     command: 'buildAndPush'
+#     Dockerfile: '**/Dockerfile'
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'aks'
