@@ -34,3 +34,51 @@ stages:
         containerRegistry: 'cprimemyacr321014'  # Provide your service connection here
         tags: |
           $(tag)
+    - task: Kubernetes@1
+      displayName: Deploy
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'murthy'
+        azureResourceGroup: 'prime-rg'
+        kubernetesCluster: 'cprimecluster'
+        namespace: 'default'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: '01_kubernetes_aks'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+        azureSubscriptionEndpointForSecrets: 'murthy'
+        azureContainerRegistry: 'cprimemyacr321014.azurecr.io'
+        forceUpdate: false
+    - task: Kubernetes@1
+      displayName: Destroy
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'murthy'
+        azureResourceGroup: 'prime-rg'
+        kubernetesCluster: 'cprimecluster'
+        namespace: 'default'
+        command: 'delete'
+        useConfigurationFile: true
+        configuration: '01_kubernetes_aks'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+        azureSubscriptionEndpointForSecrets: 'murthy'
+        azureContainerRegistry: 'cprimemyacr321014.azurecr.io'
+        forceUpdate: false
+    - task: Kubernetes@1
+      displayName: ReDeploy
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'murthy'
+        azureResourceGroup: 'prime-rg'
+        kubernetesCluster: 'cprimecluster'
+        namespace: 'default'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: '01_kubernetes_aks'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+        azureSubscriptionEndpointForSecrets: 'murthy'
+        azureContainerRegistry: 'cprimemyacr321014.azurecr.io'
+        forceUpdate: false
