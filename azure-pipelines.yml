@@ -1,3 +1,4 @@
+
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
@@ -10,15 +11,26 @@ pool:
   murthy
 
 steps:
-- task: AzureCLI@2
+- task: Docker@2
   inputs:
-    azureSubscription: 'murthy'
-    scriptType: 'Bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      docker build -t cprimemyacr321014.azurecr.io/web-game:tag 2048-game
-      az acr login -n cprimemyacr321014
-      docker push cprimemyacr321014.azurecr.io/web-game:tag
+    containerRegistry: 'cprimemyacr321014'
+    repository: 'murthy'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    addPipelineData: false
+    addBaseImageData: false
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'murthy'  # Use the managed identity service connection name here
+#     scriptType: 'Bash'
+#     containerRegistry: 'cprimemyacr321014'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: 
+#       # Run your Docker commands
+#       docker build -t cprimemyacr321014.azurecr.io/web-game:tag 2048-game
+      
+#       docker push cprimemyacr321014.azurecr.io/web-game:tag
+
 
 # - task: AzureCLI@2
 #   inputs:
