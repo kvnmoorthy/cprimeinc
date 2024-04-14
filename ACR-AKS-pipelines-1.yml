@@ -29,7 +29,7 @@ steps:
     namespace: 'default'
     command: 'apply'
     useConfigurationFile: true
-    configuration: 'k8s-manifest'
+    configuration: 'hello project/k8s-manifest'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
     azureSubscriptionEndpointForSecrets: 'Free Trial(1)(3c850cea-049e-4bff-a039-406dc6fafa3c)'
