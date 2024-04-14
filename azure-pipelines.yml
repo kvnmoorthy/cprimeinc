@@ -16,7 +16,6 @@ steps:
     scriptType: 'Bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az login
       docker build -t cprimemyacr321014.azurecr.io/web-game:tag 2048-game
       az acr login -n cprimemyacr321014
       docker push cprimemyacr321014.azurecr.io/web-game:tag
