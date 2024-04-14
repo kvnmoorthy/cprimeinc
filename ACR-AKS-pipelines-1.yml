@@ -1,0 +1,37 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  terraform1
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'aks'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      docker build -t cprimemyacr321014.azurecr.io/web:tag Weather-App-ReactJS-main
+      az acr login -n cprimemyacr321014
+      docker push cprimemyacr321014.azurecr.io/web:tag
+- script: cat k8s-manifest/Deployment.yml
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: '83b501ad-7736-43c0-8787-af60a5492ffc'
+    azureResourceGroup: 'prime-rg'
+    kubernetesCluster: 'cprimecluster'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: 'k8s-manifest'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+    azureSubscriptionEndpointForSecrets: 'Free Trial(1)(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+    azureContainerRegistry: 'cprimemyacr321014.azurecr.io'
+    forceUpdate: false
