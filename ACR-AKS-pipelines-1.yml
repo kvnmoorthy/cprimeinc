@@ -19,7 +19,7 @@ steps:
       docker build -t cprimemyacr321014.azurecr.io/web:tag Weather-App-ReactJS-main
       az acr login -n cprimemyacr321014
       docker push cprimemyacr321014.azurecr.io/web:tag
-- script: cat k8s-manifest/Deployment.yml
+- script: cat hello project/k8s-manifest/Deployment.yml
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
