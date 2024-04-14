@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Free Trial(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+    azureSubscription: 'murthy'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
@@ -20,13 +20,22 @@ steps:
       az acr login -n cprimemyacr321014
       docker push cprimemyacr321014.azurecr.io/web-game:tag
 
-- script: cat 01_kubernetes_aks/app-deploy.yaml
+# - task: AzureCLI@2
+#   inputs:
+#     azureSubscription: 'Free Trial(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+#     scriptType: 'bash'
+#     scriptLocation: 'inlineScript'
+#     inlineScript: |
+#       docker build -t cprimemyacr321014.azurecr.io/web-game:tag 2048-game
+#       az acr login -n cprimemyacr321014
+#       docker push cprimemyacr321014.azurecr.io/web-game:tag
 
+- script: cat 01_kubernetes_aks/app-deploy.yaml
 
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'
-    azureSubscriptionEndpoint: 'Free Trial(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+    azureSubscriptionEndpoint: 'murthy'
     azureResourceGroup: 'prime-rg'
     kubernetesCluster: 'cprimecluster'
     namespace: 'default'
@@ -35,6 +44,22 @@ steps:
     configuration: '01_kubernetes_aks'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-    azureSubscriptionEndpointForSecrets: 'Free Trial(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+    azureSubscriptionEndpointForSecrets: 'murthy'
     azureContainerRegistry: 'cprimemyacr321014.azurecr.io'
     forceUpdate: false
+
+# - task: Kubernetes@1
+#   inputs:
+#     connectionType: 'Azure Resource Manager'
+#     azureSubscriptionEndpoint: 'Free Trial(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+#     azureResourceGroup: 'prime-rg'
+#     kubernetesCluster: 'cprimecluster'
+#     namespace: 'default'
+#     command: 'apply'
+#     useConfigurationFile: true
+#     configuration: '01_kubernetes_aks'
+#     secretType: 'dockerRegistry'
+#     containerRegistryType: 'Azure Container Registry'
+#     azureSubscriptionEndpointForSecrets: 'Free Trial(3c850cea-049e-4bff-a039-406dc6fafa3c)'
+#     azureContainerRegistry: 'cprimemyacr321014.azurecr.io'
+#     forceUpdate: false
