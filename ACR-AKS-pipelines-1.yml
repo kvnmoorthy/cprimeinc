@@ -16,7 +16,7 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      docker build -t cprimemyacr321014.azurecr.io/web:tag Weather-App-ReactJS-main
+      docker build -t cprimemyacr321014.azurecr.io/web:tag hello project/Weather-App-ReactJS-main
       az acr login -n cprimemyacr321014
       docker push cprimemyacr321014.azurecr.io/web:tag
 - script: cat hello project/k8s-manifest/Deployment.yml
