@@ -19,6 +19,10 @@ steps:
 #       docker build -t cprimemyacr321014.azurecr.io/web:tag hello project/Weather-App-ReactJS-main
 #       az acr login -n cprimemyacr321014
 #       docker push cprimemyacr321014.azurecr.io/web:tag
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'aks'
